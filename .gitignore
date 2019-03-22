@@ -1,0 +1,7 @@
+/myproject/catalog/__pycache__/*
+/myproject/catalog/migrations/__pycache__/*
+
+/myproject/myproject/__pycache__/*
+
+/myproject/polls/__pycache__/*
+/myproject/polls/migrations/__pycache__/*
