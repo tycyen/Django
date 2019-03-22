@@ -25,7 +25,7 @@ SECRET_KEY = '_gg8tywlie*&hf1=$@&7h%0!%7+%p2egmlzsd1gy*6-04=qjbf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'ansontsai-1st-django-project.herokuapp.com']
 
 
 # Application definition
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'myproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['polls/template'],
+        'DIRS': [os.path.join(BASE_DIR, 'polls/template')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,3 +120,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
