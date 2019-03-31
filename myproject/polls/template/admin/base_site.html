@@ -1,9 +1,8 @@
-{% extends "admin/base.html" %}
+{% extends "./base.html" %}
 
 {% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
 
 {% block branding %}
-{#<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('後台管理介面') }}</a></h1>#}
 <h1 id="site-name"><a href="{% url 'admin:index' %}">後台管理介面</a></h1>
 {% endblock %}
 
