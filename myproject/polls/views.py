@@ -1,17 +1,42 @@
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse,HttpResponseRedirect,HttpRequest
 from django.template import loader
 from django.shortcuts import get_object_or_404,render
 from django.http import Http404
-from .models import Choice,Question
+from .models import Choice,Question,FeatureChoose,ToolsFile
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
+from django.core.mail import send_mail
 
-def index(request):
-    latest_question_list = Question.object.order_by('-pub_date')[:5]
-    context = {'latest_question_list': latest_question_list}
-    return render(request, 'polls/index.html', context)
-    
+def GoToIssueFeedbackPage(request):
+    if not request.POST:
+        return HttpResponse("傳送表單異常")
+    CustomerName = request.POST['CustomerName']
+    Location = request.POST['Location']
+    MachineType = request.POST['MachineType']
+    MacCustID = request.POST['MacCustID']
+    IssueTopic = request.POST['IssueTopic']
+    MacStatus = request.POST['MacStatus']
+    MacDescription = request.POST['MacDescription']
+    MailMsg = '''
+    IssueTopic: {}
+    Machine Status: {}
+    Issue Description: {}'''.format(IssueTopic,MacStatus,MacDescription)
+    send_mail('{},{},{},{} Got New Issue'.format(CustomerName,Location,MachineType,MacCustID), 
+              MailMsg, 
+              'yenchang70280@gmail.com', 
+              ['yenchang70280@gmail.com'], fail_silently=False)
+    return render(request, 'polls/issuefeedbackreply.htm',locals())
+def SendIssueMail(request):
+    MailMsg = '''
+    IssueTopic: {}
+    Machine Status: {}
+    Issue Description: {}'''.format('aa','bb','cc')
+    send_mail('{},{},{},{} Got New Issue'.format('11','22','33','44'), 
+              MailMsg, 
+              'yenchang70280@gmail.com', 
+              ['yenchang70280@gmail.com'], fail_silently=False)
+    return HttpResponse('sent!')
 def detail(request, question_id):
     '''try:
         question = Question.objects.get(pk=question_id)
@@ -45,21 +70,27 @@ def vote(request, question_id):
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
-    context_object_name = 'latest_question_list'
+    context_object_name = 'FeatureItemList'
 
     def get_queryset(self):
-        '''"""Return the last five published questions."""
-        return Question.objects.order_by('-pub_date')[:5]'''
-
-        """
-        Return the last five published questions (not including those set to be
-        published in the future).
-        """
-        return Question.objects.filter(pub_date__lte=timezone.now()).order_by('-pub_date')[:5]
-
+        return FeatureChoose.objects.all()
+class IssueFeedbackRequest(HttpRequest):
+    template_name = 'polls/issuefeedbackreply.htm'
+    def get_queryset(self):
+        return HttpResponse('{},{}'.format(ctx['CustomerName'],ctx['Location']))
+    '''Replier = HttpResponse()
+    msg = '已收到來自{}, {}, {}相關的issue訊息'
+    return HttpResponse(msg)
+    def get_queryset(self):   
+        ctx ={}
+        ctx['CustomerName'] = request.POST['CustomerName']
+        ctx['Location'] = request.POST['Location']
+        return HttpResponse('{},{}'.format(ctx['CustomerName'],ctx['Location']))
+        return render(request, "polls/issuefeedbackreply.htm", ctx)'''
 class DetailView(generic.DetailView):
     model = Question
     template_name = 'polls/detail.html'
+    
     def get_queryset(self): #加這個是避免猜到正確的網址,然後還是可以顯示網頁
         """
         Excludes any questions that aren't published yet.
@@ -69,3 +100,10 @@ class DetailView(generic.DetailView):
 class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
+
+class ToolsFileView(generic.ListView):
+    model = ToolsFile
+    template_name = 'polls/toolsdownload.htm'
+    context_object_name = 'ToolsList'
+    def get_queryset(self):
+        return ToolsFile.objects.all()

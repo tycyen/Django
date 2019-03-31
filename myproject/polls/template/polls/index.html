@@ -1,13 +1,15 @@
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
-
-{% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        {#<li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li> 下面取代#}
-        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <title>Main Page</title>
+    <body>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'polls/css/style.css' %}">
+        {% include 'polls/header.htm' %}
+        
+        <h1>選擇服務</h1>
+        <ul>
+            <li><a href="{% url 'polls:issuefeedback'%}">Issue Feedback</a></li>
+            <li><a href="{% url 'polls:toolsdownload'%}">Tools Download</a></li>
+        </ul>
+    </body>
+</html>

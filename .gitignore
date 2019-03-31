@@ -4,4 +4,4 @@
 /myproject/myproject/__pycache__/*
 
 /myproject/polls/__pycache__/*
-/myproject/polls/migrations/__pycache__/*
+/myproject/polls/migrations/

@@ -1,22 +1,15 @@
 from django.urls import path
-
+from django.views.generic import TemplateView
 from . import views
 
 app_name = 'polls'  #加了這一行,原本模板的{% url 'detail'就要改{% url 'polls:detail'
 
-'''urlpatterns = [
-    # ex: /polls/
-    path('', views.index, name='index'),
-    # ex: /polls/5/
-    path('<int:question_id>/', views.detail, name='detail'),
-    # ex: /polls/5/results/
-    path('<int:question_id>/results/', views.results, name='results'),
-    # ex: /polls/5/vote/
-    path('<int:question_id>/vote/', views.vote, name='vote'),
-]'''
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
-    path('<int:pk>/', views.DetailView.as_view(), name='detail'),
+    path('issuefeedback', TemplateView.as_view(template_name='polls/issuefeedback.htm'), name = 'issuefeedback'),
+    path('issuefeedbackreply', views.GoToIssueFeedbackPage, name = 'issuefeedbackreply'),
+    #path('issuefeedbackreply', views.SendIssueMail, name = 'issuefeedbackreply'),
+    path('toolsdownload', views.ToolsFileView.as_view(), name = 'toolsdownload'),
     path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
     path('<int:question_id>/vote/', views.vote, name='vote'),
 ]

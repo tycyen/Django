@@ -1,0 +1,43 @@
+li a {
+    color: green;
+    line-height: 1.5em;
+}
+#headerdescription {
+    background-color: aquamarine;
+    color: black;
+    font-size: 100%;
+    text-align: right;
+}
+a#headerpress:hover{
+    font-size: 110%;
+}
+
+h1{
+    font-family: '標楷體';
+    font-size: 200%
+}
+
+tr textarea, td textarea{/* Text Area 固定大小*/
+    width:500px;
+    height:200px;
+    resize: none;
+}
+p{
+    margin: 0.5em;
+}
+
+#CustomerInfo{
+    padding-top: 2em;
+}
+
+tr.IssueInfo, td.IssueInfo{
+    max-width:500px;
+    max-height:200px;
+}
+.SimpleInfo{
+    max-width:250px;
+    max-height:100px;
+}
+.ToolsList{
+    margin: 1em;
+}
