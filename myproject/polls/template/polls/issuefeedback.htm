@@ -4,5 +4,44 @@
         {% load static %}
         <link rel="stylesheet" type="text/css" href="{% static 'polls/css/style.css' %}">
         {% include 'polls/header.htm' %}
+        <form action="{% url 'polls:issuefeedbackreply'%}" method="post">
+            {% csrf_token %}
+            <table>
+                <tr><!--Row0-->
+                    <td id="CustomerInfo"rowspan="2" valign="top"><!--(0,0)(1,0)-->
+                        <p>廠商名稱: 
+                            <select>
+                                <option value="TSMC">TSMC</option>
+                            </select> 
+                        </p>
+                        <p>地區: 
+                            <select>
+                                <option value="Long Tan">龍潭</option>
+                            </select>
+                        </p>
+                        <p>機台型號: 
+                            <select>
+                                <option value="M2">M2</option>
+                            </select>
+                        </p>                   
+                        <p>客戶機台編號: <input type="text" name="Mech Cust ID"></p>
+                        <p>機台異常簡述: <input type="text" name="Issue Topic"></p>  
+                    </td>
+                    <td>
+                        <p>機台異常時的狀態: </p>
+                        <textarea resize: none cols="50" rows="10" 
+                            placeholder="e.g. PriPnp Stay on pick pos, SecPnP Stay on Place pos"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td><!--(0,1)-->
+                        <p>機況詳述: </p>
+                        <textarea id="MCDesc" resize: none cols="50" rows="10" 
+                            placeholder="e.g. Software crash while EOL"></textarea>
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" name="sendinfo" value="送出資訊"/>
+        </form>
     </body>
 </html>

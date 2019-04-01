@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+    <title>asdf</title>
     <body>
         {% load static %}
         <link rel="stylesheet" type="text/css" href="{% static 'polls/css/style.css' %}">
         {% include 'polls/header.htm' %}
-        
-        <h1>選擇服務</h1>
-        <ul>
-            <li><a href="{% url 'polls:issuefeedback'%}">Issue Feedback</a></li>
-        </ul>
+        <p>表單已寄出</p>
     </body>
 </html>
