@@ -122,9 +122,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'yenchang70280@gmail.com'
 EMAIL_HOST_PASSWORD = '81237yenchang'
 EMAIL_USE_TLS = 'True'
 EMAIL_POST = '587'
+
+MAILGUN_ACCESS_KEY = '4818349289457d525d0f96d398e939dc-6140bac2-241de6bf'
+MAILGUN_SERVER_NAME = 'sandboxcdbd10e169884cc184190f88f41d1d80.mailgun.org'
