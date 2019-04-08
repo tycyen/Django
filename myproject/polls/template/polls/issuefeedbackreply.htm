@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-    <title>asdf</title>
+        <title>Issue Feedback Reply</title>
     <body>
         {% load static %}
         <link rel="stylesheet" type="text/css" href="{% static 'polls/css/style.css' %}">
         {% include 'polls/header.htm' %}
-        <p>表單已寄出</p>
+        <h1>表單已寄出,資訊如下,拜托沒事別亂搞我</h1>
+        <table>
+            <tr class="IssueInfo"><!--Row0-->
+                <td class="IssueInfo" rowspan="2" valign="top"><!--(0,0)(1,0)-->
+                    <p>廠商名稱: {{CustomerName}}</p>
+                    <p>地區: {{Location}}</p>
+                    <p>機台型號: {{MachineType}}</p>                   
+                    <p>客戶機台編號: {{MacCustID}}</p>
+                    <p>機台異常簡述:</p>
+                    <textarea  class="SimpleInfo" disabled>{{IssueTopic}}</textarea>
+                </td>
+                <td class="IssueInfo">
+                    <p>機台異常時的狀態: </p><textarea disabled>{{MacStatus}}</textarea>
+                </td>
+            </tr>
+            <tr class="IssueInfo">
+                <td class="IssueInfo">
+                    <p>機況詳述: </p><textarea disabled>{{MacDescription}}</textarea>
+                </td>
+            </tr>
+        </table>
+        <a href="{% url 'polls:issuefeedback'%}">回上頁</a>
     </body>
 </html>

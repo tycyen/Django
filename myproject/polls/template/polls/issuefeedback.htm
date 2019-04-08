@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+    <title>Issue Feedback</title>
     <body>
         {% load static %}
         <link rel="stylesheet" type="text/css" href="{% static 'polls/css/style.css' %}">
@@ -8,36 +9,37 @@
             {% csrf_token %}
             <table>
                 <tr><!--Row0-->
-                    <td id="CustomerInfo"rowspan="2" valign="top"><!--(0,0)(1,0)-->
+                    <td id="CustomerInfo" rowspan="2" valign="top"><!--(0,0)(1,0)-->
                         <p>廠商名稱: 
-                            <select>
+                            <select name="CustomerName">
                                 <option value="TSMC">TSMC</option>
                             </select> 
                         </p>
                         <p>地區: 
-                            <select>
-                                <option value="Long Tan">龍潭</option>
+                            <select name="Location">
+                                <option value="龍潭">龍潭</option>
                             </select>
                         </p>
                         <p>機台型號: 
-                            <select>
+                            <select name="MachineType">
                                 <option value="M2">M2</option>
                             </select>
                         </p>                   
-                        <p>客戶機台編號: <input type="text" name="Mech Cust ID"></p>
-                        <p>機台異常簡述: <input type="text" name="Issue Topic"></p>  
+                        <p>客戶機台編號: <input type="text" name="MacCustID" maxlength="30"></p>
+                        <p>機台異常簡述(50字內): <input type="text" name="IssueTopic" 
+                            placeholder="e.g. Show blue screen" maxlength="50"></p>  
                     </td>
                     <td>
                         <p>機台異常時的狀態: </p>
-                        <textarea resize: none cols="50" rows="10" 
-                            placeholder="e.g. PriPnp Stay on pick pos, SecPnP Stay on Place pos"></textarea>
+                        <textarea resize: none cols="50" rows="10" name="MacStatus"
+                            placeholder="e.g. PriPnp stay on pick pos, SecPnP stay on place pos"></textarea>
                     </td>
                 </tr>
                 <tr>
                     <td><!--(0,1)-->
                         <p>機況詳述: </p>
-                        <textarea id="MCDesc" resize: none cols="50" rows="10" 
-                            placeholder="e.g. Software crash while EOL"></textarea>
+                        <textarea resize: none cols="50" rows="10" name="MacDescription"
+                            placeholder="拜托多寫一點..."></textarea>
                     </td>
                 </tr>
             </table>

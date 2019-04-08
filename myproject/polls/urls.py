@@ -7,8 +7,9 @@ app_name = 'polls'  #加了這一行,原本模板的{% url 'detail'就要改{% u
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('issuefeedback', TemplateView.as_view(template_name='polls/issuefeedback.htm'), name = 'issuefeedback'),
-    path('issuefeedbackreply', TemplateView.as_view(template_name='polls/issuefeedbackreply.htm'), name = 'issuefeedbackreply'),
-    path('<int:pk>/', views.FeatureChooseView.as_view(), name='feature'),
+    path('issuefeedbackreply', views.GoToIssueFeedbackPage, name = 'issuefeedbackreply'),
+    #path('issuefeedbackreply', views.SendIssueMail, name = 'issuefeedbackreply'),
+    path('toolsdownload', views.ToolsFileView.as_view(), name = 'toolsdownload'),
     path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
     path('<int:question_id>/vote/', views.vote, name='vote'),
 ]

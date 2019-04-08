@@ -17,7 +17,7 @@ h1{
     font-size: 200%
 }
 
-textarea{/* Text Area 固定大小*/
+tr textarea, td textarea{/* Text Area 固定大小*/
     width:500px;
     height:200px;
     resize: none;
@@ -25,9 +25,19 @@ textarea{/* Text Area 固定大小*/
 p{
     margin: 0.5em;
 }
+
 #CustomerInfo{
     padding-top: 2em;
 }
-#MCDesc{
-    placeho
+
+tr.IssueInfo, td.IssueInfo{
+    max-width:500px;
+    max-height:200px;
+}
+.SimpleInfo{
+    max-width:250px;
+    max-height:100px;
+}
+.ToolsList{
+    margin: 1em;
 }

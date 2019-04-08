@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Choice, Question, FeatureChoose, IssueInfo, Customer, Location, Machine
+from .models import Choice, Question, FeatureChoose, IssueInfo
+from .models import Customer, Location, Machine,ToolsFile
 
 class ChoiceInline(admin.TabularInline):
     model = Choice
@@ -19,17 +20,16 @@ class QuestionAdmin(admin.ModelAdmin):
 class CustomerInline(admin.StackedInline):
     model = IssueInfo.Customer
     #extra = 1
-class CustomerAdmin(admin.ModelAdmin):
-    inlines = [CustomerInline]
 
 class IssueInfoAdmin(admin.ModelAdmin):
     list_display = ('Customer_Info','Location','Machine_Model_Name')
     def Customer_Info(self, obj):
         return '{} , {}'.format(obj.Customer,obj.Location)
-admin.site.register(Question,QuestionAdmin)
-admin.site.register(Choice)
-admin.site.register(FeatureChoose)
+#admin.site.register(Question,QuestionAdmin)
+#admin.site.register(Choice)
+#admin.site.register(FeatureChoose)
 admin.site.register(Customer)
 admin.site.register(Location)
 admin.site.register(Machine)
 admin.site.register(IssueInfo,IssueInfoAdmin)
+admin.site.register(ToolsFile)

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+    <title>Main Page</title>
     <body>
         {% load static %}
         <link rel="stylesheet" type="text/css" href="{% static 'polls/css/style.css' %}">
@@ -8,6 +9,7 @@
         <h1>選擇服務</h1>
         <ul>
             <li><a href="{% url 'polls:issuefeedback'%}">Issue Feedback</a></li>
+            <li><a href="{% url 'polls:toolsdownload'%}">Tools Download</a></li>
         </ul>
     </body>
 </html>

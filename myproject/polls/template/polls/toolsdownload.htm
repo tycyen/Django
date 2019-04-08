@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <title>Tools Download</title>
+    <body>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'polls/css/style.css' %}"> 
+        {% include 'polls/header.htm' %}
+        <h1>Tools Download</h1>
+        <div>
+            {% if ToolsList %}
+                {% for Item in ToolsList %}       
+                    <a class="ToolsList" href="static/polls/files/{{Item.filename_text}}.exe" 
+                        title="{{Item.description_text}}">{{Item.filename_text}}</a>
+                    {% if forloop.counter|divisibleby:"5" %}<P></P>{% endif %}
+                {% endfor %}  
+                <!--{% include 'polls/toolsdownloadfooter.htm' %}
+                <p>{% block filename %}File{% endblock %}</p>
+                <p>{% block filedescription %}Description{% endblock %}</p>-->
+            {% endif %}
+        </div>
+    </body>
+</html>
